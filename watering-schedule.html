@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Watering Schedule | VerdantCare - Plant Hydration Tracker</title>
+  <meta name="description" content="Manage your plant watering schedule, view hydration levels, set reminders, and log daily plant care activities." />
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#486730",
+            "primary-container": "#87a96b",
+            "on-primary-container": "#213d0b",
+            secondary: "#52652a",
+            "secondary-container": "#d4eca2",
+            "on-secondary-container": "#576b2f",
+            tertiary: "#9f402d",
+            "tertiary-container": "#f17e66",
+            "on-tertiary-container": "#691809",
+            background: "#faf9f5",
+            "on-background": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-high": "#e9e8e4",
+            "on-surface-variant": "#43483d",
+            outline: "#74796c",
+            "outline-variant": "#c4c8ba"
+          },
+          fontFamily: {
+            sans: ["Quicksand", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="text-on-background bg-background min-h-screen relative flex flex-col justify-between overflow-x-hidden">
+
+  <!-- Ambient Blobs -->
+  <div class="leaf-blob bg-primary-container w-96 h-96 -top-20 -left-20"></div>
+  <div class="leaf-blob bg-secondary-container w-[450px] h-[450px] bottom-10 -right-20"></div>
+
+  <!-- Header Navigation -->
+  <header class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-md border-t border-l border-white/20 shadow-[0px_30px_40px_rgba(82,101,42,0.08)]">
+    <nav class="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-20">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-2xl text-primary hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-3xl filled">eco</span>
+        <span>VerdantCare</span>
+      </a>
+
+      <div class="hidden md:flex gap-8 items-center font-medium text-base">
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-library.html">Plant Library</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1" href="watering-schedule.html">Watering Schedule</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-tips.html">Plant Tips</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-of-the-month.html">Plant of the Month</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="watering-schedule.html" class="bg-primary text-white font-bold px-5 py-2.5 rounded-full hover:bg-secondary transition-all shadow-sm hover:scale-105 text-sm">
+          My Garden
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-primary focus:outline-none">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-white/40 px-6 py-6 space-y-4">
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="index.html">Home</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-library.html">Plant Library</a>
+      <a class="block font-bold text-primary text-lg" href="watering-schedule.html">Watering Schedule</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-tips.html">Plant Tips</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-of-the-month.html">Plant of the Month</a>
+    </div>
+  </header>
+
+  <!-- Main Schedule Dashboard -->
+  <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto w-full flex-grow">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- Left Column: Tasks Grid -->
+      <div id="watering-schedule-list" class="flex-grow space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-secondary-container/60 text-on-secondary-container font-semibold text-xs mb-2">
+              <span class="material-symbols-outlined text-sm">water_drop</span>
+              <span>Daily Care Schedule</span>
+            </div>
+            <h1 class="text-4xl font-bold text-primary">Today's Watering Tasks</h1>
+            <p class="text-on-surface-variant text-base">Nurturing your indoor plants one drop at a time.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="px-4 py-2 bg-primary/10 text-primary font-bold rounded-full text-xs" id="goal-progress-summary">
+              2 of 6 plants watered today
+            </span>
+          </div>
+        </div>
+
+        <!-- Task Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <!-- Task Card 1: Calathea Ornata -->
+          <div class="glass-card p-6 rounded-2xl space-y-6 relative overflow-hidden group">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9oZDGRFd1skTAngrQQR0vkohgJUNPosORZxukLT2QzkJ_GcryyPPnKxKh7RqdmzH0p1CFPxHo4h0pnVZKLbcCZkY2WlhwKLK2tl1k1Rxjnv6bOB7o9i7tJz-__9K7zV6kEttplWVX_rkpmJ1jWr833eiD03z_cGZx2z-xx4n-gqYzRR-_1HxHD68ELeoH2oeTvb0OBv1lhA2isHmr3kCpshKUlHXYf8XfCkznWC4ZMkyseVtJyJzg5BGRv-LjsPRwfbADlqN1jxoD" 
+                       alt="Calathea Ornata" class="w-full h-full object-cover"/>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-on-surface">Calathea Ornata</h3>
+                  <p class="text-xs text-on-surface-variant">Bedroom Shelf • Mist leaves</p>
+                </div>
+              </div>
+
+              <!-- Interactive Checkbox -->
+              <div class="relative">
+                <input type="checkbox" id="check-calathea" data-plant-id="calathea-ornata" data-default-level="20" class="hidden water-checkbox"/>
+                <label for="check-calathea" class="cursor-pointer">
+                  <div class="w-9 h-9 rounded-full border-2 border-outline-variant flex items-center justify-center transition-all check-circle group-hover:border-primary">
+                    <span class="material-symbols-outlined text-white text-xl opacity-0 transition-opacity check-mark">check</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Hydration Level Progress Bar -->
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span class="text-on-surface-variant">Hydration Level</span>
+                <span class="text-secondary hydration-level-text">20%</span>
+              </div>
+              <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full w-[20%] droplet-gradient rounded-full transition-all duration-500 hydration-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                <span>Water every 4 days</span>
+              </div>
+              <div class="status-indicator flex items-center gap-1">
+                <span class="material-symbols-outlined text-secondary text-2xl animate-bounce">water_drop</span>
+                <span class="text-[10px] font-bold text-secondary uppercase tracking-wider">Thirsty</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Task Card 2: Golden Pothos -->
+          <div class="glass-card p-6 rounded-2xl space-y-6 relative overflow-hidden group">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnZvgjTflA_SXJ5iZax2MCpgnh7HALHziOJ9v9G0DX0fv5H0zp8AYBk1iTtcPwQXMhjTCg-vk1wVFKuv6dofWYsxi4QZnaelg8vFNfVF5CGvGBimHej3raICDZTt-sIs6XLPYAhgPySPKKkXyJo-pD5v3nfWB-1jcgBe5fABi9B0AEVFdU_zDquXpql3GsjewlrBXoJB8y1oEvywSrMM_jE5CxzhK9ayuNA5r9YDh2BYR89D8Z1N077_taQrDiFa-X6LFM8k5BYwqU" 
+                       alt="Golden Pothos" class="w-full h-full object-cover"/>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-on-surface">Golden Pothos</h3>
+                  <p class="text-xs text-on-surface-variant">Living Room • Easy Care</p>
+                </div>
+              </div>
+
+              <div class="relative">
+                <input type="checkbox" id="check-pothos" data-plant-id="golden-pothos" data-default-level="85" class="hidden water-checkbox"/>
+                <label for="check-pothos" class="cursor-pointer">
+                  <div class="w-9 h-9 rounded-full border-2 border-outline-variant flex items-center justify-center transition-all check-circle group-hover:border-primary">
+                    <span class="material-symbols-outlined text-white text-xl opacity-0 transition-opacity check-mark">check</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span class="text-on-surface-variant">Hydration Level</span>
+                <span class="text-secondary hydration-level-text">85%</span>
+              </div>
+              <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full w-[85%] droplet-gradient rounded-full transition-all duration-500 hydration-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                <span>Water every 7 days</span>
+              </div>
+              <div class="status-indicator flex items-center gap-1 opacity-70">
+                <span class="material-symbols-outlined text-outline text-2xl">water_drop</span>
+                <span class="text-[10px] font-bold text-outline uppercase tracking-wider">Hydrated</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Task Card 3: Fiddle Leaf Fig -->
+          <div class="glass-card p-6 rounded-2xl space-y-6 relative overflow-hidden group">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                  <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_Ro6PTHcbpRIdOqPLcQGSjHzl-mUUf2QyaKOaP-UhrT3sPXHS1f6pW1XSUjK9M1U9R4AEQ8vDgWgjdvtEcpbsx9uJtcC8a5lCOLzKpFpIhXg_I48LSueV1s_LvFTyzzJnam_jVYdOYFzWXvWCnMMTrweFRJo6thgwisTCtkiJtIJ0KZT2yLnOPNsJ7knRR3fq8UWYLMVZ6mIPoIX9NmTMPDAlkSNA4QtruCGmydhz_C3zh4hU33U4ugjSrJhdtJ7yjzWVZI6eLAc" 
+                       alt="Fiddle Leaf Fig" class="w-full h-full object-cover"/>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-on-surface">Fiddle Leaf Fig</h3>
+                  <p class="text-xs text-on-surface-variant">Main Hallway • Deep Soak</p>
+                </div>
+              </div>
+
+              <div class="relative">
+                <input type="checkbox" id="check-fiddle" data-plant-id="fiddle-leaf-fig" data-default-level="15" class="hidden water-checkbox"/>
+                <label for="check-fiddle" class="cursor-pointer">
+                  <div class="w-9 h-9 rounded-full border-2 border-outline-variant flex items-center justify-center transition-all check-circle group-hover:border-primary">
+                    <span class="material-symbols-outlined text-white text-xl opacity-0 transition-opacity check-mark">check</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span class="text-on-surface-variant">Hydration Level</span>
+                <span class="text-secondary hydration-level-text">15%</span>
+              </div>
+              <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full w-[15%] droplet-gradient rounded-full transition-all duration-500 hydration-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                <span>Water every 8 days</span>
+              </div>
+              <div class="status-indicator flex items-center gap-1">
+                <span class="material-symbols-outlined text-tertiary text-2xl animate-pulse">warning</span>
+                <span class="text-[10px] font-bold text-tertiary uppercase tracking-wider">Critical</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Task Card 4: Boston Fern -->
+          <div class="glass-card p-6 rounded-2xl space-y-6 relative overflow-hidden group">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-4">
+                <div class="w-16 h-16 rounded-2xl overflow-hidden shadow-md flex-shrink-0">
+                  <img src="https://images.unsplash.com/photo-1599598425947-434458f00494?auto=format&fit=crop&w=800&q=80" 
+                       alt="Boston Fern" class="w-full h-full object-cover"/>
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg text-on-surface">Boston Fern</h3>
+                  <p class="text-xs text-on-surface-variant">Bathroom • High Humidity</p>
+                </div>
+              </div>
+
+              <div class="relative">
+                <input type="checkbox" id="check-fern" data-plant-id="boston-fern" data-default-level="30" class="hidden water-checkbox"/>
+                <label for="check-fern" class="cursor-pointer">
+                  <div class="w-9 h-9 rounded-full border-2 border-outline-variant flex items-center justify-center transition-all check-circle group-hover:border-primary">
+                    <span class="material-symbols-outlined text-white text-xl opacity-0 transition-opacity check-mark">check</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <div class="flex justify-between items-center text-xs font-bold">
+                <span class="text-on-surface-variant">Hydration Level</span>
+                <span class="text-secondary hydration-level-text">30%</span>
+              </div>
+              <div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+                <div class="h-full w-[30%] droplet-gradient rounded-full transition-all duration-500 hydration-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1">
+              <div class="flex items-center gap-1.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-sm text-primary">schedule</span>
+                <span>Water every 3 days</span>
+              </div>
+              <div class="status-indicator flex items-center gap-1">
+                <span class="material-symbols-outlined text-secondary text-2xl animate-bounce">water_drop</span>
+                <span class="text-[10px] font-bold text-secondary uppercase tracking-wider">Thirsty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weekly Summary Banner -->
+        <div class="glass-card p-8 rounded-3xl border-2 border-dashed border-primary/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div class="flex flex-col md:flex-row items-center gap-4">
+            <div class="w-16 h-16 rounded-full bg-primary-container/30 flex items-center justify-center text-primary font-bold text-2xl shrink-0">
+              <span class="material-symbols-outlined text-3xl">task_alt</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-primary">Daily Care Goal Tracker</h3>
+              <p class="text-sm text-on-surface-variant">Complete your scheduled plant watering tasks to earn your Garden Bloom Streak!</p>
+            </div>
+          </div>
+          <button onclick="showToast('Weekly Garden Report synced!')" class="bg-primary text-white font-bold px-6 py-3 rounded-full hover:bg-secondary transition-all text-sm shadow-md shrink-0">
+            View Weekly Stats
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Reminders & Weather Notification Panel -->
+      <aside class="w-full lg:w-80 flex-shrink-0 space-y-6">
+        <div class="glass-card p-6 rounded-2xl sticky top-28 space-y-6">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-secondary-container/80 flex items-center justify-center text-primary">
+              <span class="material-symbols-outlined">notifications</span>
+            </div>
+            <h2 class="text-xl font-bold text-on-surface">Reminders</h2>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- Notification Item 1 -->
+            <div class="p-4 rounded-xl bg-white/50 border border-white/60 space-y-2 hover:bg-white/70 transition-colors">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold px-2 py-0.5 bg-tertiary-container/80 text-on-tertiary-container rounded">Care Alert</span>
+                <span class="text-[10px] text-outline">15m ago</span>
+              </div>
+              <p class="text-on-surface text-xs leading-relaxed">Mist the Calathea & Fern leaves today to maintain proper indoor humidity.</p>
+            </div>
+
+            <!-- Notification Item 2 -->
+            <div class="p-4 rounded-xl bg-white/50 border border-white/60 space-y-2 hover:bg-white/70 transition-colors">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded">Weather</span>
+                <span class="text-[10px] text-outline">2h ago</span>
+              </div>
+              <p class="text-on-surface text-xs leading-relaxed">Bright sunny afternoon ahead! Plants near south windows may need extra hydration.</p>
+            </div>
+
+            <!-- Notification Item 3 -->
+            <div class="p-4 rounded-xl bg-white/50 border border-white/60 space-y-2 hover:bg-white/70 transition-colors">
+              <div class="flex justify-between items-center">
+                <span class="text-xs font-bold px-2 py-0.5 bg-primary-container text-on-primary-container rounded">Fertilizer</span>
+                <span class="text-[10px] text-outline">Yesterday</span>
+              </div>
+              <p class="text-on-surface text-xs leading-relaxed">Organic liquid fertilizer due for the Monstera this coming weekend.</p>
+            </div>
+          </div>
+
+          <!-- Feature Promo Card -->
+          <div class="p-6 rounded-2xl bg-secondary text-white space-y-3 relative overflow-hidden group cursor-pointer" onclick="showToast('Soil Sensor Integration guide coming soon!')">
+            <h4 class="font-bold text-lg">Smart Soil Sensors</h4>
+            <p class="text-xs opacity-90 leading-relaxed">Connect Bluetooth moisture sensors to automate your hydration alerts.</p>
+            <div class="pt-2 font-bold text-xs flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+              <span>Learn More</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full pt-16 pb-12 bg-background border-t border-outline-variant/60">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="space-y-4 md:col-span-2">
+        <div class="flex items-center gap-2 text-2xl font-bold text-primary">
+          <span class="material-symbols-outlined text-3xl filled">eco</span>
+          <span>VerdantCare</span>
+        </div>
+        <p class="text-sm text-on-surface-variant max-w-md leading-relaxed">
+          Nurturing growth, one plant at a time. Designed with organic glassmorphic aesthetic to support urban gardeners and plant enthusiasts everywhere.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="index.html" class="hover:text-primary">Home</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Plant Library</a></li>
+          <li><a href="watering-schedule.html" class="hover:text-primary">Watering Schedule</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Plant Care Tips</a></li>
+          <li><a href="plant-of-the-month.html" class="hover:text-primary">Plant of the Month</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Care Categories</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="plant-library.html" class="hover:text-primary">Succulents & Cacti</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Leafy Foliage</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Flowering Plants</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Humidity & Watering</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-xs text-outline pt-6 border-t border-outline-variant/40">
+      © 2026 VerdantCare Plant Companion. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/plants-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

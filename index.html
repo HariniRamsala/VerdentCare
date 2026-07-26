@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VerdantCare | Plant Care Companion - Grow with Confidence</title>
+  <meta name="description" content="Your ultimate botanical companion for indoor houseplant care, watering schedules, lighting guides, and plant tips." />
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#486730",
+            "primary-container": "#87a96b",
+            "on-primary-container": "#213d0b",
+            secondary: "#52652a",
+            "secondary-container": "#d4eca2",
+            "on-secondary-container": "#576b2f",
+            tertiary: "#9f402d",
+            "tertiary-container": "#f17e66",
+            "on-tertiary-container": "#691809",
+            background: "#faf9f5",
+            "on-background": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-high": "#e9e8e4",
+            "on-surface-variant": "#43483d",
+            outline: "#74796c",
+            "outline-variant": "#c4c8ba"
+          },
+          fontFamily: {
+            sans: ["Quicksand", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="text-on-background bg-background min-h-screen relative flex flex-col justify-between overflow-x-hidden">
+
+  <!-- Ambient Leaf Blobs -->
+  <div class="leaf-blob bg-secondary-container w-96 h-96 -top-20 -left-20"></div>
+  <div class="leaf-blob bg-primary-container w-[500px] h-[500px] top-1/3 -right-40"></div>
+  <div class="leaf-blob bg-tertiary-container/30 w-80 h-80 -bottom-20 left-1/4"></div>
+
+  <!-- Navigation Bar -->
+  <header class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-md border-t border-l border-white/20 shadow-[0px_30px_40px_rgba(82,101,42,0.08)]">
+    <nav class="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-20">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-2xl text-primary hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-3xl filled">eco</span>
+        <span>VerdantCare</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex gap-8 items-center font-medium text-base">
+        <a class="text-primary font-bold border-b-2 border-primary pb-1" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-library.html">Plant Library</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="watering-schedule.html">Watering Schedule</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-tips.html">Plant Tips</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-of-the-month.html">Plant of the Month</a>
+      </div>
+
+      <!-- Action & Mobile Toggle -->
+      <div class="flex items-center gap-4">
+        <a href="plant-library.html" class="hidden sm:flex p-2 hover:scale-110 transition-transform">
+          <span class="material-symbols-outlined text-primary">search</span>
+        </a>
+        <a href="watering-schedule.html" class="bg-primary text-white font-bold px-5 py-2.5 rounded-full hover:bg-secondary transition-all shadow-sm hover:scale-105 text-sm">
+          My Garden
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-primary focus:outline-none">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-white/40 px-6 py-6 space-y-4">
+      <a class="block font-bold text-primary text-lg" href="index.html">Home</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-library.html">Plant Library</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="watering-schedule.html">Watering Schedule</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-tips.html">Plant Tips</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-of-the-month.html">Plant of the Month</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto w-full flex-grow space-y-16">
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/60 text-on-secondary-container font-semibold text-sm">
+          <span class="material-symbols-outlined text-base">auto_awesome</span>
+          <span>Your Botanical Haven</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary tracking-tight leading-tight">
+          Grow with confidence. <br/>
+          <span class="text-secondary font-medium">Nurture every leaf.</span>
+        </h1>
+        <p class="text-lg text-on-surface-variant max-w-xl leading-relaxed">
+          Welcome to VerdantCare. Master houseplant care with personalized watering schedules, expert botanical guides, multi-criteria filtering, and intuitive garden tracking.
+        </p>
+
+        <!-- Search Bar -->
+        <form action="plant-library.html" method="GET" class="relative max-w-lg">
+          <div class="relative flex items-center">
+            <input type="text" 
+                   name="search" 
+                   placeholder="Search plants by name (e.g. Monstera, Fiddle Leaf, Snake Plant)..." 
+                   class="w-full pl-12 pr-32 py-4 rounded-full bg-white/70 backdrop-blur-md border border-white/60 focus:outline-none focus:ring-2 focus:ring-primary shadow-sm text-sm text-on-surface placeholder:text-outline"/>
+            <span class="material-symbols-outlined absolute left-4 text-primary">search</span>
+            <button type="submit" class="absolute right-2 bg-primary text-white px-5 py-2.5 rounded-full font-bold text-sm hover:bg-secondary transition-all">
+              Search
+            </button>
+          </div>
+        </form>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="plant-library.html" class="bg-primary text-white font-bold px-8 py-3.5 rounded-full hover:bg-secondary transition-all shadow-md hover:scale-105 flex items-center gap-2">
+            <span>Explore Plant Library</span>
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+          <a href="watering-schedule.html" class="glass-card text-primary font-bold px-8 py-3.5 rounded-full hover:bg-white/40 transition-all hover:scale-105 flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">water_drop</span>
+            <span>Watering Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card -->
+      <div class="lg:col-span-5">
+        <div class="glass-card rounded-3xl p-4 relative group overflow-hidden">
+          <div class="h-96 w-full rounded-2xl overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX3H-6NpUivwtYjwlP8lWU8MW8Qh4Ln_9pwozsvBRxLXdzbIt5SOKKTXQ8VnU5SLlBfeaJTMP1jHdngIQqy1sV6-mmBBq-fPWYk6LgDKV8VVgPbTKvx0UuLL4H0o9gbX2yjXSP6XL_38QZa928ssamSKdIFEiMnJYwHmAOrUwoRhtK2ejHvdxQt6nWrM89HJQ0p5arBrgxSSQkt2uRVzOcwv20IQ3XAStyRVIpvfSlXW6FoM2YnsMKu-1YPvXnxtuxMsd088wzgWCo" 
+                 alt="Monstera Deliciosa Hero Image" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white space-y-2">
+              <span class="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider">Plant Spotlight</span>
+              <h3 class="text-2xl font-bold">Monstera Deliciosa</h3>
+              <p class="text-sm opacity-90">Bright indirect light • Easy to medium care</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Navigation Cards Grid -->
+    <section class="space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-3xl font-bold text-primary">Garden Features</h2>
+          <p class="text-on-surface-variant text-base">Everything you need to help your indoor garden thrive.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1: Plant Library -->
+        <a href="plant-library.html" class="glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.03] transition-all group block">
+          <div class="w-14 h-14 rounded-2xl bg-secondary-container/80 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-3xl">menu_book</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface">Plant Library</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Filter and explore 12+ detailed houseplant care guides with light, soil, and watering requirements.</p>
+          <div class="flex items-center text-primary font-bold text-sm gap-1 group-hover:gap-2 transition-all">
+            <span>Browse Plants</span>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Watering Schedule -->
+        <a href="watering-schedule.html" class="glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.03] transition-all group block">
+          <div class="w-14 h-14 rounded-2xl bg-primary-container/80 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-3xl">water_drop</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface">Watering Schedule</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Interactive dashboard with progress bars, reminders, and saved watering checkbox states.</p>
+          <div class="flex items-center text-primary font-bold text-sm gap-1 group-hover:gap-2 transition-all">
+            <span>View Dashboard</span>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Plant Tips -->
+        <a href="plant-tips.html" class="glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.03] transition-all group block">
+          <div class="w-14 h-14 rounded-2xl bg-tertiary-container/60 flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-3xl">tips_and_updates</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface">Plant Tips</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Master sunlight, humidity levels, soil mixtures, pruning, and seasonal care techniques.</p>
+          <div class="flex items-center text-tertiary font-bold text-sm gap-1 group-hover:gap-2 transition-all">
+            <span>Read Articles</span>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </div>
+        </a>
+
+        <!-- Card 4: Plant of the Month -->
+        <a href="plant-of-the-month.html" class="glass-card p-6 rounded-2xl space-y-4 hover:scale-[1.03] transition-all group block">
+          <div class="w-14 h-14 rounded-2xl bg-secondary-container/80 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-3xl">star</span>
+          </div>
+          <h3 class="text-xl font-bold text-on-surface">Plant of the Month</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">Spotlight feature on the Peace Lily — fun facts, air purification benefits, and care guide.</p>
+          <div class="flex items-center text-primary font-bold text-sm gap-1 group-hover:gap-2 transition-all">
+            <span>Explore Spotlight</span>
+            <span class="material-symbols-outlined text-sm">chevron_right</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Featured Plant Library Preview Carousel/Grid -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-secondary">Botanical Highlights</span>
+          <h2 class="text-3xl font-bold text-primary">Popular Indoor Plants</h2>
+        </div>
+        <a href="plant-library.html" class="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all">
+          <span>View All 12 Plants</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Sample Card 1 -->
+        <div class="glass-card rounded-2xl overflow-hidden group">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3_Ro6PTHcbpRIdOqPLcQGSjHzl-mUUf2QyaKOaP-UhrT3sPXHS1f6pW1XSUjK9M1U9R4AEQ8vDgWgjdvtEcpbsx9uJtcC8a5lCOLzKpFpIhXg_I48LSueV1s_LvFTyzzJnam_jVYdOYFzWXvWCnMMTrweFRJo6thgwisTCtkiJtIJ0KZT2yLnOPNsJ7knRR3fq8UWYLMVZ6mIPoIX9NmTMPDAlkSNA4QtruCGmydhz_C3zh4hU33U4ugjSrJhdtJ7yjzWVZI6eLAc" 
+                 alt="Fiddle Leaf Fig" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+            <div class="absolute top-4 right-4 bg-secondary-container/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold">Medium Care</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-on-surface">Fiddle Leaf Fig</h3>
+              <p class="text-sm italic text-on-surface-variant">Ficus lyrata</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-white/20">
+              <span class="text-sm text-primary font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">wb_sunny</span> Bright Indirect
+              </span>
+              <a href="plant-library.html" class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-secondary transition-colors">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Card 2 -->
+        <div class="glass-card rounded-2xl overflow-hidden group">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxsvuSOfRvP0uUDk-nkf1NfPF0xA92xvvq351rJ6zyeV2D0f-Ty6XHbpeYtn8MbhLvbCRI9-lD_tutmDd5YDVdumTwZJr-76esB8QeBv3uF8AAhwbGgFNgdc8ksW4Y1KaA8X_1yP6UZdTqTFfpNED1m4rMpM_zjpmQBzQQF7jnnUnO0EqEew4XOPvZzIO6JB9EnPtqzGAIwA-8jWont3ELdZLdM2zdamOhFRXTdegPaZUX4palw7sH1IggzuEZQLU1YVYb2Au8yjcd" 
+                 alt="Snake Plant" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+            <div class="absolute top-4 right-4 bg-primary-container/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold">Easy Care</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-on-surface">Snake Plant</h3>
+              <p class="text-sm italic text-on-surface-variant">Dracaena trifasciata</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-white/20">
+              <span class="text-sm text-primary font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">cloudy_snowing</span> Low Light
+              </span>
+              <a href="plant-library.html" class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-secondary transition-colors">Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample Card 3 -->
+        <div class="glass-card rounded-2xl overflow-hidden group">
+          <div class="h-60 overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV9eupTJjnKGDZokQgebLPqWrALLXhrkkSzCIvuBKis-fQW6I0Te_Q9emnxlxA02Bc-waDjjcX8JuyLmSKm5WY79zLP1Ct-9Vw9ZBf984vbkY2fZ9AVD0fvR8XFGQRThErHlwrjTW5urWqI88Ap5F-xcocU3btZifwaZzLqvUVBocx5xPyuo467BsllvDQhxiE72wDXzcyKJfWqteS9D_6aAvvQXSFeuxtpGPz3aBvS2yhRhFl7TWEZjRGYuQRY0yMaUslPQ4HR8PY" 
+                 alt="Peace Lily" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+            <div class="absolute top-4 right-4 bg-primary-container/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold">Easy Care</div>
+          </div>
+          <div class="p-6 space-y-4">
+            <div>
+              <h3 class="text-xl font-bold text-on-surface">Peace Lily</h3>
+              <p class="text-sm italic text-on-surface-variant">Spathiphyllum</p>
+            </div>
+            <div class="flex items-center justify-between pt-2 border-t border-white/20">
+              <span class="text-sm text-primary font-semibold flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">partly_cloudy_day</span> Moderate Light
+              </span>
+              <a href="plant-of-the-month.html" class="bg-primary text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-secondary transition-colors">Spotlight</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full pt-16 pb-12 bg-background border-t border-outline-variant/60">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="space-y-4 md:col-span-2">
+        <div class="flex items-center gap-2 text-2xl font-bold text-primary">
+          <span class="material-symbols-outlined text-3xl filled">eco</span>
+          <span>VerdantCare</span>
+        </div>
+        <p class="text-sm text-on-surface-variant max-w-md leading-relaxed">
+          Nurturing growth, one plant at a time. Designed with organic glassmorphic aesthetic to support urban gardeners and plant enthusiasts everywhere.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="index.html" class="hover:text-primary">Home</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Plant Library</a></li>
+          <li><a href="watering-schedule.html" class="hover:text-primary">Watering Schedule</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Plant Care Tips</a></li>
+          <li><a href="plant-of-the-month.html" class="hover:text-primary">Plant of the Month</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Care Categories</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="plant-library.html" class="hover:text-primary">Succulents & Cacti</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Leafy Foliage</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Flowering Plants</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Humidity & Watering</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-xs text-outline pt-6 border-t border-outline-variant/40">
+      © 2026 VerdantCare Plant Companion. All rights reserved. Crafted with organic love for green leaves.
+    </div>
+  </footer>
+
+  <script src="js/plants-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

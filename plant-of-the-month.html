@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Plant of the Month | VerdantCare - The Peace Lily Spotlight</title>
+  <meta name="description" content="Discover our Plant of the Month spotlight featuring the Peace Lily (Spathiphyllum) — fun facts, air purification benefits, and full care instructions." />
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#486730",
+            "primary-container": "#87a96b",
+            "on-primary-container": "#213d0b",
+            secondary: "#52652a",
+            "secondary-container": "#d4eca2",
+            "on-secondary-container": "#576b2f",
+            tertiary: "#9f402d",
+            "tertiary-container": "#f17e66",
+            "on-tertiary-container": "#691809",
+            background: "#faf9f5",
+            "on-background": "#1b1c1a",
+            "surface-container": "#efeeea",
+            "surface-container-high": "#e9e8e4",
+            "on-surface-variant": "#43483d",
+            outline: "#74796c",
+            "outline-variant": "#c4c8ba"
+          },
+          fontFamily: {
+            sans: ["Quicksand", "sans-serif"]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="text-on-background bg-background min-h-screen relative flex flex-col justify-between overflow-x-hidden">
+
+  <!-- Ambient Blobs -->
+  <div class="leaf-blob bg-secondary-container w-96 h-96 -top-20 -left-20"></div>
+  <div class="leaf-blob bg-primary-container w-[550px] h-[550px] -bottom-40 -right-40"></div>
+
+  <!-- Header Navigation -->
+  <header class="fixed top-0 w-full z-50 bg-white/10 backdrop-blur-md border-t border-l border-white/20 shadow-[0px_30px_40px_rgba(82,101,42,0.08)]">
+    <nav class="flex justify-between items-center px-6 md:px-12 max-w-7xl mx-auto h-20">
+      <a href="index.html" class="flex items-center gap-2 font-bold text-2xl text-primary hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-3xl filled">eco</span>
+        <span>VerdantCare</span>
+      </a>
+
+      <div class="hidden md:flex gap-8 items-center font-medium text-base">
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-library.html">Plant Library</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="watering-schedule.html">Watering Schedule</a>
+        <a class="text-on-surface-variant hover:text-primary hover:scale-105 transition-all" href="plant-tips.html">Plant Tips</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-1" href="plant-of-the-month.html">Plant of the Month</a>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <a href="watering-schedule.html" class="bg-primary text-white font-bold px-5 py-2.5 rounded-full hover:bg-secondary transition-all shadow-sm hover:scale-105 text-sm">
+          My Garden
+        </a>
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-primary focus:outline-none">
+          <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-white/40 px-6 py-6 space-y-4">
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="index.html">Home</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-library.html">Plant Library</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="watering-schedule.html">Watering Schedule</a>
+      <a class="block font-medium text-on-surface-variant text-lg hover:text-primary" href="plant-tips.html">Plant Tips</a>
+      <a class="block font-bold text-primary text-lg" href="plant-of-the-month.html">Plant of the Month</a>
+    </div>
+  </header>
+
+  <!-- Main Content Spotlight -->
+  <main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto w-full flex-grow space-y-16">
+    <!-- Spotlight Hero Grid -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <!-- Left Content -->
+      <div class="lg:col-span-7 z-10">
+        <div class="glass-card rounded-3xl p-8 md:p-12 space-y-6">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/60 text-on-secondary-container font-semibold text-xs">
+            <span class="material-symbols-outlined text-base">auto_awesome</span>
+            <span>Featured Spotlight • July 2026</span>
+          </div>
+
+          <h1 class="text-4xl md:text-6xl font-bold text-primary tracking-tight">The Peace Lily</h1>
+          <p class="text-base md:text-lg text-on-surface-variant max-w-xl leading-relaxed">
+            Elegant, resilient, and air-purifying. The Peace Lily (<em>Spathiphyllum</em>) is a botanical masterpiece that signals its hydration needs with gentle drooping leaves, making it a perfect companion for both novices and seasoned gardeners.
+          </p>
+
+          <!-- Care Stats Grid -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+            <div class="flex flex-col items-center p-4 rounded-2xl bg-white/50 border border-white/60 text-center space-y-1">
+              <span class="material-symbols-outlined text-primary text-2xl">wb_sunny</span>
+              <span class="text-xs text-outline">Light</span>
+              <span class="text-sm font-bold text-on-surface">Indirect Light</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-2xl bg-white/50 border border-white/60 text-center space-y-1">
+              <span class="material-symbols-outlined text-primary text-2xl">water_drop</span>
+              <span class="text-xs text-outline">Water</span>
+              <span class="text-sm font-bold text-on-surface">Weekly Soak</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-2xl bg-white/50 border border-white/60 text-center space-y-1">
+              <span class="material-symbols-outlined text-primary text-2xl">humidity_mid</span>
+              <span class="text-xs text-outline">Humidity</span>
+              <span class="text-sm font-bold text-on-surface">60% Humidity</span>
+            </div>
+            <div class="flex flex-col items-center p-4 rounded-2xl bg-white/50 border border-white/60 text-center space-y-1">
+              <span class="material-symbols-outlined text-tertiary text-2xl">pets</span>
+              <span class="text-xs text-outline">Pet Safety</span>
+              <span class="text-sm font-bold text-on-surface">Toxic to Pets</span>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <button onclick="addToSchedule('Peace Lily')" class="bg-primary text-white px-8 py-3.5 rounded-full font-bold text-sm hover:bg-secondary transition-all shadow-md hover:scale-105 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">add_task</span>
+              <span>Add to My Garden</span>
+            </button>
+            <button onclick="openPlantModal('peace-lily')" class="glass-card border border-primary text-primary px-8 py-3.5 rounded-full font-bold text-sm hover:bg-white/40 transition-all hover:scale-105 flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">info</span>
+              <span>View Full Specs</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Image Frame -->
+      <div class="lg:col-span-5 relative group">
+        <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass-card p-4 shadow-xl">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV9eupTJjnKGDZokQgebLPqWrALLXhrkkSzCIvuBKis-fQW6I0Te_Q9emnxlxA02Bc-waDjjcX8JuyLmSKm5WY79zLP1Ct-9Vw9ZBf984vbkY2fZ9AVD0fvR8XFGQRThErHlwrjTW5urWqI88Ap5F-xcocU3btZifwaZzLqvUVBocx5xPyuo467BsllvDQhxiE72wDXzcyKJfWqteS9D_6aAvvQXSFeuxtpGPz3aBvS2yhRhFl7TWEZjRGYuQRY0yMaUslPQ4HR8PY" 
+               alt="Peace Lily Plant" class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"/>
+          
+          <!-- Fun Fact Overlay Bubble -->
+          <div class="absolute bottom-8 left-8 right-8 glass-card-solid p-4 rounded-2xl ambient-bloom space-y-1 hover:scale-105 transition-transform">
+            <div class="flex items-center gap-2 text-tertiary">
+              <span class="material-symbols-outlined text-lg">lightbulb</span>
+              <span class="text-xs font-bold uppercase tracking-wider">Botanical Fun Fact</span>
+            </div>
+            <p class="text-xs text-on-surface-variant leading-tight">
+              Peace Lilies aren't true lilies! They belong to the <em>Araceae</em> family and their white 'flower' is actually a specialized leaf called a spathe.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deep Dive Care Instructions & Timeline -->
+    <section class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="text-xs font-bold uppercase tracking-wider text-secondary">Step-by-Step Care Guide</span>
+        <h2 class="text-3xl md:text-4xl font-bold text-primary">How to Help Your Peace Lily Thrive</h2>
+        <p class="text-sm text-on-surface-variant">Follow these four golden rules to ensure year-round white blooms and dark glossy foliage.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Step 1 -->
+        <div class="glass-card p-6 rounded-2xl space-y-3 relative">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base mb-2">1</div>
+          <h3 class="font-bold text-lg text-on-surface">Lighting Setup</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Place in bright, filtered light 3 to 6 feet away from a window. Direct sunlight can scorch delicate leaves.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="glass-card p-6 rounded-2xl space-y-3 relative">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base mb-2">2</div>
+          <h3 class="font-bold text-lg text-on-surface">Watering Routine</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Water thoroughly when the top 1 inch of soil feels dry to touch. The plant will tell you it is thirsty with a slight leaf drop.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="glass-card p-6 rounded-2xl space-y-3 relative">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base mb-2">3</div>
+          <h3 class="font-bold text-lg text-on-surface">Humidity Boost</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Keep ambient humidity around 60%. Mist fronds regularly or place near a room humidifier in drier climates.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="glass-card p-6 rounded-2xl space-y-3 relative">
+          <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base mb-2">4</div>
+          <h3 class="font-bold text-lg text-on-surface">Pruning Blooms</h3>
+          <p class="text-xs text-on-surface-variant leading-relaxed">Trim spent flower stalks at the soil line with clean shears to direct plant energy into new white spathes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Detail Modal Reused -->
+  <div id="plant-detail-modal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div id="modal-content-area" class="glass-card-solid w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative my-8">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="w-full pt-16 pb-12 bg-background border-t border-outline-variant/60">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="space-y-4 md:col-span-2">
+        <div class="flex items-center gap-2 text-2xl font-bold text-primary">
+          <span class="material-symbols-outlined text-3xl filled">eco</span>
+          <span>VerdantCare</span>
+        </div>
+        <p class="text-sm text-on-surface-variant max-w-md leading-relaxed">
+          Nurturing growth, one plant at a time. Designed with organic glassmorphic aesthetic to support urban gardeners and plant enthusiasts everywhere.
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="index.html" class="hover:text-primary">Home</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Plant Library</a></li>
+          <li><a href="watering-schedule.html" class="hover:text-primary">Watering Schedule</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Plant Care Tips</a></li>
+          <li><a href="plant-of-the-month.html" class="hover:text-primary">Plant of the Month</a></li>
+        </ul>
+      </div>
+
+      <div class="space-y-3">
+        <h4 class="font-bold text-primary text-base">Care Categories</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a href="plant-library.html" class="hover:text-primary">Succulents & Cacti</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Leafy Foliage</a></li>
+          <li><a href="plant-library.html" class="hover:text-primary">Flowering Plants</a></li>
+          <li><a href="plant-tips.html" class="hover:text-primary">Humidity & Watering</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-xs text-outline pt-6 border-t border-outline-variant/40">
+      © 2026 VerdantCare Plant Companion. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/plants-data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
