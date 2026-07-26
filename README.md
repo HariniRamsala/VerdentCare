@@ -22,7 +22,7 @@ A cozy, nature-inspired web app that helps you keep your houseplants happy — t
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React + Vite
+- **Frontend:** HTML + CSS + JavaScript
 - **Styling:** Tailwind CSS
 - **Routing:** React Router
 - **Data:** Local/mock JSON (for now)
