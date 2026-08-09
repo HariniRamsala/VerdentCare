@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VerdentCare | Watering Schedule</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed-dim": "#cbcb6a",
+            "on-tertiary-container": "#3b3b00",
+            "error-container": "#ffdad6",
+            "secondary": "#9f402d",
+            "background": "#e2fffe",
+            "surface-container-high": "#ccefee",
+            "primary-fixed-dim": "#b0ceb4",
+            "error": "#ba1a1a",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#ffb4a5",
+            "tertiary-container": "#a7a74b",
+            "secondary-container": "#fd876f",
+            "on-tertiary-fixed-variant": "#494900",
+            "on-primary-fixed": "#062010",
+            "on-surface": "#002020",
+            "on-background": "#002020",
+            "on-secondary-fixed-variant": "#802918",
+            "surface-tint": "#4a654f",
+            "surface": "#e2fffe",
+            "surface-container-low": "#d7fafa",
+            "surface-bright": "#e2fffe",
+            "on-secondary-fixed": "#3e0500",
+            "on-secondary-container": "#732010",
+            "surface-container-lowest": "#ffffff",
+            "inverse-primary": "#b0ceb4",
+            "primary-fixed": "#cceacf",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "surface-variant": "#c6e9e9",
+            "on-surface-variant": "#424842",
+            "tertiary": "#616207",
+            "surface-container": "#d2f5f4",
+            "primary-container": "#8daa91",
+            "primary": "#4a654f",
+            "on-primary-container": "#253f2b",
+            "on-primary-fixed-variant": "#334d38",
+            "surface-container-highest": "#c6e9e9",
+            "on-primary": "#ffffff",
+            "outline": "#737972",
+            "tertiary-fixed": "#e8e883",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed": "#ffdad3",
+            "outline-variant": "#c2c8c0",
+            "on-tertiary-fixed": "#1d1d00",
+            "surface-dim": "#bee1e0",
+            "inverse-surface": "#143535",
+            "inverse-on-surface": "#d4f8f7"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-padding": "24px",
+            "gutter": "20px",
+            "unit": "8px",
+            "section-gap": "80px"
+          },
+          "fontFamily": {
+            "headline-xl": ["Quicksand"],
+            "body-md": ["Be Vietnam Pro"],
+            "label-md": ["Be Vietnam Pro"],
+            "headline-lg-mobile": ["Quicksand"],
+            "body-lg": ["Be Vietnam Pro"],
+            "headline-md": ["Quicksand"],
+            "headline-lg": ["Quicksand"]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md relative antialiased min-h-screen flex flex-col">
+
+<!-- Ambient Background Blobs -->
+<div class="blob-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- Top Navigation Bar -->
+<nav class="sticky top-0 w-full bg-surface/60 backdrop-blur-xl dark:bg-surface-dim/60 border-b border-white/30 shadow-sm transition-all duration-500 ease-in-out z-50">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-container-padding h-20">
+    <a class="font-headline-md text-headline-md text-primary dark:text-primary-fixed-dim flex items-center gap-2" href="index.html">
+      <span class="material-symbols-outlined text-3xl">eco</span> VerdentCare
+    </a>
+    <div class="hidden md:flex space-x-8 items-center h-full">
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="index.html">Home</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="library.html">Library</a>
+      <a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 h-full flex items-center" href="schedule.html">Schedule</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="tips.html">Tips</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="spotlight.html">Spotlight</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="community.html">Community</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="about.html">About</a>
+      <a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all duration-300 hover:scale-105 h-full flex items-center" href="contact.html">Contact</a>
+    </div>
+    <a href="my-garden.html" class="bg-primary text-on-primary px-6 py-3 rounded-full font-label-md text-label-md hover:scale-105 transition-transform duration-300 hidden md:flex items-center gap-2 shadow-md">
+      <span class="material-symbols-outlined text-lg">potted_plant</span> My Garden
+    </a>
+    <button class="md:hidden text-primary" id="hamburger" aria-label="Toggle Menu">
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Navigation Menu -->
+<div class="fixed inset-0 bg-surface/95 backdrop-blur-2xl z-50 hidden flex-col items-center justify-center gap-6 p-8" id="mobile-nav">
+  <button class="absolute top-6 right-6 text-primary" id="mobile-close" aria-label="Close Menu">
+    <span class="material-symbols-outlined text-3xl">close</span>
+  </button>
+  <a class="font-headline-md text-primary" href="index.html">Home</a>
+  <a class="font-headline-md text-primary" href="library.html">Library</a>
+  <a class="font-headline-md text-primary" href="schedule.html">Schedule</a>
+  <a class="font-headline-md text-primary" href="tips.html">Tips</a>
+  <a class="font-headline-md text-primary" href="spotlight.html">Spotlight</a>
+  <a class="font-headline-md text-primary" href="community.html">Community</a>
+  <a class="font-headline-md text-primary" href="about.html">About</a>
+  <a class="font-headline-md text-primary" href="contact.html">Contact</a>
+  <a class="bg-primary text-on-primary font-label-md text-label-md px-8 py-3 rounded-full mt-4 flex items-center gap-2" href="my-garden.html">
+    <span class="material-symbols-outlined">potted_plant</span> My Garden
+  </a>
+</div>
+
+<!-- Main Schedule Canvas -->
+<main class="flex-grow max-w-7xl mx-auto px-container-padding py-section-gap w-full relative z-10">
+  <!-- Header & Controls -->
+  <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div>
+      <h1 class="font-headline-xl text-headline-xl text-on-surface mb-2">Watering Schedule</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant">Stay rooted! Visual vine progress tracks show when each plant needs care.</p>
+    </div>
+    <div class="flex gap-3 items-center">
+      <div class="glass-card rounded-full p-1 inline-flex">
+        <button class="px-6 py-2 rounded-full font-label-md text-label-md text-on-primary bg-primary shadow-sm transition-all" id="view-weekly">Card View</button>
+        <button class="px-6 py-2 rounded-full font-label-md text-label-md text-on-surface-variant hover:text-primary transition-all" id="view-monthly">Monthly View</button>
+      </div>
+      <button class="bg-primary text-on-primary px-5 py-2.5 rounded-full font-label-md hover:scale-105 transition-transform flex items-center gap-1 shadow-md" id="add-plant-btn">
+        <span class="material-symbols-outlined text-sm">add</span> Add Plant
+      </button>
+    </div>
+  </header>
+
+  <!-- Bento Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Main Schedule Cards Container (8 Cols) -->
+    <section class="lg:col-span-8 flex flex-col gap-6">
+      <div class="glass-card rounded-xl p-8 flex flex-col gap-6">
+        <div class="flex justify-between items-center">
+          <h2 class="font-headline-md text-headline-md text-primary" id="schedule-heading">Your Plant Routine</h2>
+          <span class="text-xs bg-surface-container-high px-3 py-1.0 rounded-full font-label-md text-on-surface">Auto-calculates by date</span>
+        </div>
+        
+        <!-- Schedule Cards List -->
+        <div id="schedule-grid" class="flex flex-col gap-4">
+          <!-- Dynamically populated by schedule.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar Overview (4 Cols) -->
+    <aside class="lg:col-span-4 flex flex-col gap-6">
+      <div class="glass-card rounded-xl p-6 flex flex-col gap-4">
+        <h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary">analytics</span> Routine Stats
+        </h3>
+        <div class="flex flex-col gap-3">
+          <div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low">
+            <span class="font-body-md text-on-surface-variant">Overdue</span>
+            <span class="font-bold text-secondary font-headline-md" id="stat-overdue-count">0</span>
+          </div>
+          <div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low">
+            <span class="font-body-md text-on-surface-variant">Water Soon (0-2d)</span>
+            <span class="font-bold text-tertiary font-headline-md" id="stat-soon-count">0</span>
+          </div>
+          <div class="flex justify-between items-center p-3 rounded-lg bg-surface-container-low">
+            <span class="font-body-md text-on-surface-variant">Hydrated</span>
+            <span class="font-bold text-primary font-headline-md" id="stat-ok-count">0</span>
+          </div>
+        </div>
+        <button class="w-full bg-primary text-on-primary py-3 rounded-full font-label-md mt-2 hover:scale-[1.02] transition-transform shadow-md" id="sidebar-water-all">
+          💧 Water All Overdue Plants
+        </button>
+      </div>
+
+      <!-- Care Hint Box -->
+      <div class="glass-card rounded-xl p-6 border-l-4 border-tertiary flex flex-col gap-2">
+        <span class="font-label-md text-tertiary flex items-center gap-1 uppercase tracking-wider">
+          <span class="material-symbols-outlined text-sm">lightbulb</span> Finger Test Tip
+        </span>
+        <p class="font-body-md text-on-surface-variant text-sm">
+          Always check soil moisture 1-2 inches deep before watering. If damp, wait 2 more days — roots love breathable soil!
+        </p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- Add Plant Modal Overlay -->
+<div class="modal-overlay" id="add-plant-modal" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="font-headline-md text-headline-md text-primary flex items-center gap-2">
+        <span class="material-symbols-outlined">add_circle</span> Add Custom Plant
+      </h2>
+      <button class="text-outline hover:text-on-surface transition-colors" id="modal-close">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+    </div>
+    <form id="add-plant-form" class="flex flex-col gap-4" novalidate>
+      <div>
+        <label class="font-label-md text-on-surface block mb-1" for="plant-name-input">Plant Name *</label>
+        <input type="text" id="plant-name-input" class="w-full bg-surface-container-lowest border-2 border-outline-variant rounded-xl p-3 focus:outline-none focus:border-primary text-on-surface" placeholder="e.g. My Bedroom Snake Plant" required />
+        <p class="text-error text-xs mt-1" id="name-error"></p>
+      </div>
+      <div>
+        <label class="font-label-md text-on-surface block mb-1" for="plant-emoji-input">Plant Emoji</label>
+        <input type="text" id="plant-emoji-input" class="w-24 bg-surface-container-lowest border-2 border-outline-variant rounded-xl p-3 text-center text-2xl" placeholder="🌿" maxlength="4" />
+      </div>
+      <div>
+        <label class="font-label-md text-on-surface block mb-1" for="plant-freq-input">Water Every (Days) *</label>
+        <input type="number" id="plant-freq-input" class="w-full bg-surface-container-lowest border-2 border-outline-variant rounded-xl p-3 focus:outline-none focus:border-primary text-on-surface" placeholder="7" min="1" max="365" required />
+        <p class="text-error text-xs mt-1" id="freq-error"></p>
+      </div>
+      <div class="flex gap-3 mt-4">
+        <button type="button" class="w-1/2 glass-card text-on-surface py-3 rounded-full font-label-md" onclick="document.getElementById('add-plant-modal').classList.remove('open')">Cancel</button>
+        <button type="submit" class="w-1/2 bg-primary text-on-primary py-3 rounded-full font-label-md hover:scale-105 transition-transform shadow-md">Add Plant 🌿</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w-full rounded-t-xl bg-surface-container-low dark:bg-surface-container-lowest text-secondary dark:text-secondary-fixed-dim font-body-md text-body-md mt-auto">
+  <div class="flex flex-col md:flex-row justify-between items-center w-full px-container-padding py-12 max-w-7xl mx-auto">
+    <div class="mb-6 md:mb-0 text-center md:text-left">
+      <span class="font-headline-md text-headline-md text-primary block mb-2 flex items-center justify-center md:justify-start gap-2">
+        <span class="material-symbols-outlined">eco</span> VerdentCare
+      </span>
+      <span class="text-on-surface-variant">© 2026 VerdentCare. Stay Rooted.</span>
+    </div>
+    <div class="flex flex-wrap justify-center gap-6">
+      <a class="text-on-surface-variant hover:text-primary transition-opacity duration-200" href="about.html">About Us</a>
+      <a class="text-on-surface-variant hover:text-primary transition-opacity duration-200" href="contact.html">Support &amp; Contact</a>
+      <a class="text-on-surface-variant hover:text-primary transition-opacity duration-200" href="tips.html">Plant Care Guides</a>
+      <a class="text-on-surface-variant hover:text-primary transition-opacity duration-200" href="my-garden.html">My Garden</a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container" role="status" aria-live="polite"></div>
+
+<script src="js/data/plants.js"></script>
+<script src="js/data/tips.js"></script>
+<script src="js/utils/storage.js"></script>
+<script src="js/utils/toast.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/scroll-reveal.js"></script>
+<script src="js/pages/schedule.js"></script>
+</body>
+</html>
